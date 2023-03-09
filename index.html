@@ -1,0 +1,226 @@
+<html
+  lang="en"
+  class="js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"
+  style=""
+>
+  <head>
+    <title>TJ Intranet - Login</title>
+
+    <meta charset="UTF-8" />
+
+    <meta name="application-name" content="TJ Intranet" />
+    <meta name="msapplication-tooltip" content="TJ Intranet" />
+
+    <meta
+      name="description"
+      content="The Intranet for students and faculty at the Thomas Jefferson High School for Science and Technology (TJHSST). Student-created, run, and maintained."
+    />
+    <meta
+      name="keywords"
+      content="TJ Intranet, TJ Ion, TJHSST, Eighth Period, Thomas Jefferson High School for Science and Technology, TJ CSL, Computer Systems Lab"
+    />
+    <meta name="author" content="The TJ Intranet Development Team" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="TJ Intranet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-starturl" content="/" />
+
+    <meta name="theme-color" content="#0048AB" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <meta name="og:title" content="TJ Intranet" />
+    <meta name="og:site_name" content="TJ Intranet" />
+    <meta
+      name="og:description"
+      content="The Intranet for students and faculty at the Thomas Jefferson High School for Science and Technology (TJHSST). Student-created, run, and maintained."
+    />
+    <meta name="og:image" content="/static/img/logos/touch/touch-icon512.png" />
+
+    <link
+      rel="icon"
+      href="https://ion.tjhsst.edu/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      href="https://ion.tjhsst.edu/static/img/favicon.png"
+      type="image/png"
+    />
+
+    <!-- Chrome Add to Homescreen -->
+    <link rel="manifest" href="https://ion.tjhsst.edu/static/manifest.json" />
+
+    <!-- iOS/Safari touch icons -->
+    <link
+      rel="apple-touch-icon"
+      href="https://ion.tjhsst.edu/static/img/logos/touch/touch-icon60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="https://ion.tjhsst.edu/static/img/logos/touch/touch-icon76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="https://ion.tjhsst.edu/static/img/logos/touch/touch-icon120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="https://ion.tjhsst.edu/static/img/logos/touch/touch-icon152.png"
+    />
+
+    <link
+      href="https://ion.tjhsst.edu/static/vendor/fontawesome-free-5.11.2/css/all.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:100italic,400italic,700italic,100,400,700"
+    />
+
+    <link
+      href="https://ion.tjhsst.edu/static/css/base.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+
+    <link
+      href="https://ion.tjhsst.edu/static/css/schedule.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <link
+      href="https://ion.tjhsst.edu/static/css/login.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <link
+      href="https://ion.tjhsst.edu/static/css/events.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+
+    <style>
+      body {
+        background-image: url("https://ion.tjhsst.edu/static/img/patterns/confectionary.png");
+      }
+    </style>
+
+    <link
+      href="https://ion.tjhsst.edu/static/css/theme.blue.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script
+      type="module"
+      src="https://unpkg.com/axios/dist/axios.min.js"
+    ></script>
+    <script>
+      //   import "regenerator-runtime/runtime";
+      //   import axios from "axios";
+      function token(u, p, completion) {
+        client = "5COdt65uc9h4odgqtbGbxwKGFBPapjfcq0WvqNAP";
+        secret =
+          "O0NQnCFHkDblfFQvikbz5VHD0UXyzsfLZ6jWtJgJkyD4rjlHL1FTZCzdB0kPrTgNyqlHtkyjkWuzVMrkiZBaTADKIG4qCHSpd4bAZmOGeD5KH8DdXBy3xrxm3iFPZXKR";
+
+        var options = {
+          method: "POST",
+          url: "https://ion.tjhsst.edu/oauth/token",
+          headers: { "content-type": "application/x-www-form-urlencoded" },
+          data: {
+            grant_type: "password",
+            username: u,
+            password: p,
+            scope: "read",
+            client_id: client,
+            client_secret: secret,
+          },
+        };
+        axios
+          .request(options)
+          .then(function (response) {
+            completion(response.data.access_token);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      }
+      async function getToken() {
+        token("2026aahmed", "ArodGoat12!", function (t) {
+          console.log(t);
+        });
+      }
+      function send() {
+        getToken();
+        // alert("Hello");
+      }
+      //   const button = document.getElementById("sbt");
+      /*
+            urlencoded.append("grant_type", "password");
+      urlencoded.append("username", "2026aahmed");
+      urlencoded.append("password", "ArodGoat12!");
+      urlencoded.append("scope", "read");
+      urlencoded.append("client_id", "5COdt65uc9h4odgqtbGbxwKGFBPapjfcq0WvqNAP");
+      urlencoded.append("client_secret", "O0NQnCFHkDblfFQvikbz5VHD0UXyzsfLZ6jWtJgJkyD4rjlHL1FTZCzdB0kPrTgNyqlHtkyjkWuzVMrkiZBaTADKIG4qCHSpd4bAZmOGeD5KH8DdXBy3xrxm3iFPZXKR");
+            */
+
+      //   button.addEventListener("click", async (_) => {
+      //     getToken();
+      //   });
+    </script>
+  </head>
+  <body class="login-page">
+    <div class="center-wrapper has-events">
+      <div class="center">
+        <div class="login">
+          <div class="title">
+            <div class="logo"></div>
+            <h1>St. Pat Soulmate!</h1>
+          </div>
+
+          <!-- <form onsubmit="send()"> -->
+          <input
+            type="hidden"
+            name="csrfmiddlewaretoken"
+            value="tNpVhS7Q7uUKERNG4EGK5y72xHMQDmzpQdm7Uw9B5N9YWVndpJ3qrIifAaFBGheF"
+          />
+
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            aria-label="Enter Username"
+            maxlength="30"
+            required=""
+            id="id_username"
+          /><br />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            aria-label="Enter Password"
+            required=""
+            id="id_password"
+          /><br />
+
+          <div id="username-warning"></div>
+          <!-- <input type="submit" value="Login" /> -->
+          <button onclick="getToken()" id="sbt">Login</button>
+          <div class="spinner-container"></div>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
